@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-
+<!-- JSTL을 사용하기 위해서는 라이브러리를 로딩 해야 한다 -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -44,7 +45,14 @@
                     <span class="sr-only">Toggle navigation</span>
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="index.jsp">Start Bootstrap</a>
+               <c:if test="${not empty sessionScope.Member}"> 
+               <div class ="navbar-brand"> ${sessionScope.Member.id} 님</div> 
+               <a class ="navbar-brand" href="Member.service?cmd=logout">로그아웃</a>
+               </c:if>
+               
+               <c:if test="${empty sessionScope.Member}"> 
+               <a class ="navbar-brand"  href ="index.jsp"> Start Bootstrap</a>
+               </c:if>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -54,10 +62,10 @@
                         <a href="index.jsp">Home</a>
                     </li>
                     <li>
-                        <a href="about.html">About</a>
+                        <a href="about.jsp">About</a>
                     </li>
                     <li>
-                        <a href="post.html">Sample Post</a>
+                        <a href="post.jsp">Post</a>
                     </li>
                     <li>
                         <a href="login.jsp">Login</a>

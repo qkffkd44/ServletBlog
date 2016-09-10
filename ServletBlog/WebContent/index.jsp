@@ -49,11 +49,12 @@
                 </button>
                 
                <c:if test="${not empty sessionScope.Member}"> 
-               <div class ="navbar-brand"> ${sessionScope.Member.id} 님 반갑습니다.</div>
+               <div class ="navbar-brand"> ${sessionScope.Member.id} 님</div> 
+               <a class ="navbar-brand" href="Member.service?cmd=logout">로그아웃</a>
                </c:if>
                
                <c:if test="${empty sessionScope.Member}"> 
-               <a class ="navbar-brand"  href ="indext.jsp"> Start Bootstrap</a>
+               <a class ="navbar-brand"  href ="index.jsp"> Start Bootstrap</a>
                </c:if>
                
             </div>
@@ -65,10 +66,10 @@
                         <a href="index.jsp">Home</a>
                     </li>
                     <li>
-                        <a href="about.html">About</a>
+                        <a href="about.jsp">About</a>
                     </li>
                     <li>
-                        <a href="post.html">Sample Post</a>
+                        <a href="board.do?cmd=page">Post</a>
                     </li>
                     <li>
                         <a href="login.jsp">Login</a>
@@ -101,7 +102,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-preview">
-                    <a href="post.html">
+                    <a href="post.jsp">
                         <h2 class="post-title">
                             Man must explore, and this is exploration at its greatest
                         </h2>
@@ -113,7 +114,7 @@
                 </div>
                 <hr>
                 <div class="post-preview">
-                    <a href="post.html">
+                    <a href="post.jsp">
                         <h2 class="post-title">
                             I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.
                         </h2>
@@ -122,7 +123,7 @@
                 </div>
                 <hr>
                 <div class="post-preview">
-                    <a href="post.html">
+                    <a href="post.jsp">
                         <h2 class="post-title">
                             Science has not yet mastered prophecy
                         </h2>
@@ -134,7 +135,7 @@
                 </div>
                 <hr>
                 <div class="post-preview">
-                    <a href="post.html">
+                    <a href="post.jsp">
                         <h2 class="post-title">
                             Failure is not an option
                         </h2>
