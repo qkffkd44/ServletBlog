@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import Interface.ServiceForward;
 import Interface.ServiceInterface;
+import Service.JoinService;
 import Service.LoginService;
 import Service.LogoutService;
 
@@ -19,11 +20,12 @@ public class MemberServlet extends HttpServlet {
   protected void service(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     // TODO Auto-generated method stub
+    System.out.println("MemberServlet : init");
 
     request.setCharacterEncoding("UTF-8");
 
     String cmd = request.getParameter("cmd");
-    System.out.println("분기 명령어 : " + cmd);
+    System.out.println("MemberServlet : 분기 명령어 : " + cmd);
 
     ServiceForward forward = null;
     ServiceInterface service = null;
@@ -34,11 +36,15 @@ public class MemberServlet extends HttpServlet {
       forward = service.excute(request, response);
 
     }
-
     
     if(cmd.equals("logout")){
       service = new LogoutService();
       
+      forward = service.excute(request, response);
+    }
+    
+    if(cmd.equals("Join")){
+      service = new JoinService();
       forward = service.excute(request, response);
     }
     

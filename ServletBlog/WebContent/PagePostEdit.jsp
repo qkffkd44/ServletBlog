@@ -1,20 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-<!-- JSTL을 사용하기 위해서는 라이브러리를 로딩 해야 한다 -->
+	
+	<!-- JSTL을 사용하기 위해서는 라이브러리를 로딩 해야 한다 -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html >
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Clean Blog - About</title>
+<title>Clean Blog - Sample Post</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -59,7 +58,7 @@
 			</c:if>
 
 			<c:if test="${empty sessionScope.Member}">
-				<a class="navbar-brand" href="index.jsp"> Start Bootstrap</a>
+				<a class="navbar-brand" href="PageHome.jsp"> Start Bootstrap</a>
 			</c:if>
 		</div>
 
@@ -67,10 +66,10 @@
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="index.jsp">Home</a></li>
-				<li><a href="about.jsp">About</a></li>
-				<li><a href="post.jsp">Post</a></li>
-				<li><a href="login.jsp">Login</a></li>
+				<li><a href="PageHome.jsp">Home</a></li>
+				<li><a href="PageAbout.jsp">About</a></li>
+				<li><a href="PagePost.jsp">Post</a></li>
+				<li><a href="PageLogin.jsp">Login</a></li>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->
@@ -80,14 +79,16 @@
 	<!-- Page Header -->
 	<!-- Set your background image for this header on the line below. -->
 	<header class="intro-header"
-		style="background-image: url('img/about-bg.jpg')">
+		style="background-image: url('img/post-bg.jpg')">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-				<div class="page-heading">
-					<h1>About Me</h1>
-					<hr class="small">
-					<span class="subheading">This is what I do.</span>
+				<div class="post-heading">
+					<h1>Man must explore, and this is exploration at its greatest</h1>
+					<h2 class="subheading">Problems look mighty small from 150
+						miles up</h2>
+
+					on August 24, 2014 </span>
 				</div>
 			</div>
 		</div>
@@ -98,21 +99,47 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-					Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea
-					nobis sit soluta odio, adipisci quas excepturi maxime quae totam
-					ducimus consectetur?</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-					Eius praesentium recusandae illo eaque architecto error,
-					repellendus iusto reprehenderit, doloribus, minus sunt. Numquam at
-					quae voluptatum in officia voluptas voluptatibus, minus!</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-					Nostrum molestiae debitis nobis, quod sapiente qui voluptatum,
-					placeat magni repudiandae accusantium fugit quas labore non rerum
-					possimus, corrupti enim modi! Et.</p>
+				<p>Want to get in touch with me? Fill out the form below to send
+					me a message and I will try to get back to you within 24 hours!</p>
+				<!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
+				<!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
+				<!-- NOTE: To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
+				<form name="sentMessage" action="board.do?cmd=edit"
+					method="POST">
+
+					<div class="row control-group">
+						<label>Title</label>
+						<div
+							class="form-group col-xs-12 floating-label-form-group controls">
+							<input type="text" class="form-control" placeholder="Title"
+								id="name" name="title_edit" 
+								required data-validation-required-message="Please enter your title.">
+						</div>
+					</div>
+
+					<div class="row control-group">
+						<label for="comment">Content</label>
+						<div
+							class="form-group col-xs-12 floating-label-form-group controls">
+							<textarea class="form-control" rows="15" id="comment"
+								name="content_edit"></textarea>
+						</div>
+					</div>
+
+					<br>
+					<div id="success"></div>
+					<div class="row">
+						<div class="form-group col-xs-12">
+							<button type="submit" class="btn btn-default">Edit</button>
+							<button type="reset" class="btn btn-default">Reset</button>
+						</div>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
+
+
 
 	<hr>
 

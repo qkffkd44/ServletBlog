@@ -11,10 +11,13 @@ public class LogoutService implements ServiceInterface {
 
   @Override
   public ServiceForward excute(HttpServletRequest request, HttpServletResponse response) {
+   
     // TODO Auto-generated method stub
+    System.out.println("LogoutService : init");
+    
     ServiceForward forward = new ServiceForward();
     forward.setRedirect(true);
-    forward.setPath("./index.jsp");
+    forward.setPath("./PageHome.jsp");
     
     HttpSession session = request.getSession();
     session.removeAttribute("Member");

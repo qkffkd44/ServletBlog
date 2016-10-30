@@ -1,7 +1,3 @@
-/Controller/
-/Interface/
-/DBManager/
-/DTO/
-/DAO/
-/Service.class
 /Service/
+/Interface/
+/DAO/

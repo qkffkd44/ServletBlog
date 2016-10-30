@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+  <!-- JSTL을 사용하기 위해서는 라이브러리를 로딩 해야 한다 -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- JSTL을 사용하기 위해서는 라이브러리를 로딩 해야 한다 -->
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -12,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Clean Blog - Contact</title>
+    <title>My Blog</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -45,30 +47,32 @@
                     <span class="sr-only">Toggle navigation</span>
                     Menu <i class="fa fa-bars"></i>
                 </button>
+                
                <c:if test="${not empty sessionScope.Member}"> 
                <div class ="navbar-brand"> ${sessionScope.Member.id} 님</div> 
                <a class ="navbar-brand" href="Member.service?cmd=logout">로그아웃</a>
                </c:if>
                
                <c:if test="${empty sessionScope.Member}"> 
-               <a class ="navbar-brand"  href ="index.jsp"> Start Bootstrap</a>
+               <a class ="navbar-brand"  href ="PageHome.jsp"> Start Bootstrap</a>
                </c:if>
+               
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="index.jsp">Home</a>
+                        <a href="PageHome.jsp">Home</a>
                     </li>
                     <li>
-                        <a href="about.jsp">About</a>
+                        <a href="PageAbout.jsp">About</a>
                     </li>
                     <li>
-                        <a href="post.jsp">Post</a>
+                        <a href="board.do?cmd=page">Post</a>
                     </li>
                     <li>
-                        <a href="login.jsp">Login</a>
+                        <a href="PageLogin.jsp">Login</a>
                     </li>
                 </ul>
             </div>
@@ -79,14 +83,14 @@
 
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('img/contact-bg.jpg')">
+    <header class="intro-header" style="background-image: url('img/home-bg.jpg')">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="page-heading">
-                        <h1>Contact Me</h1>
+                    <div class="site-heading">
+                        <h1>Clean Blog</h1>
                         <hr class="small">
-                        <span class="subheading">Have questions? I have answers (maybe).</span>
+                        <span class="subheading">A Clean Blog Theme by Start Bootstrap</span>
                     </div>
                 </div>
             </div>
@@ -97,37 +101,46 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <p>Want to get in touch with me? Fill out the form below to send me a message and I will try to get back to you within 24 hours!</p>
-                <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
-                <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
-                <!-- NOTE: To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
-                <form name="sentMessage"  action="Member.service?cmd=login" method="POST">
+                <div class="post-preview">
+                    <a href="PagePost.jsp">
+                        <h2 class="post-title">
+                            aaaaaaaaaaaaaaa
+                        </h2>
+                        <h3 class="post-subtitle">
+                           bbbbbbbbbbbbbbbbbbbbbbbbbb
+                        </h3>
+                    </a>
+                    <p class="post-meta">Posted by inyoung</a> on September 24, 2014</p>
+                </div>
+                <hr>
                 
-                    <div class="row control-group">
-                        <div class="form-group col-xs-12 floating-label-form-group controls">
-                            <label>ID</label>
-                            <input type="text" class="form-control" placeholder="ID" id="name"  name="id" required data-validation-required-message="Please enter your id.">
-                            <p class="help-block text-danger"></p>
-                        </div>
-                    </div>
-                    
-                    <div class="row control-group">
-                        <div class="form-group col-xs-12 floating-label-form-group controls">
-                            <label>PWD</label>
-                            <input type="password" class="form-control" placeholder="PWD" id="name" name="pwd"  required data-validation-required-message="Please enter your pwd.">
-                            <p class="help-block text-danger"></p>
-                        </div>
-                    </div>                                     
-              
-                    <br>
-                    <div id="success"></div>
-                    <div class="row">
-                        <div class="form-group col-xs-12">
-                            <button type="submit" class="btn btn-default">Send</button>
-                            <button type="reset" class="btn btn-default">Reset</button>
-                        </div>
-                    </div>
-                </form>
+        <table id ="boardTable"> 
+        <tbody>
+        <c:forEach var="member" items="${requestScope.Boardlist}">
+          <tr>
+                <div class="post-preview">
+                    <a href="PagePostEdit.jsp">
+                        <h2 class="post-title">
+                            ${member.title }
+                        </h2>
+                        <h3 class="post-subtitle">
+                            ${member.content }
+                        </h3>
+                    </a>
+                    <p class="post-meta">Posted by inyoung</a> on September 24, 2014</p>
+                </div>
+                <hr>
+           </tr>
+        </c:forEach>
+        </tbody>
+        </table>
+				
+				<!-- Pager -->
+                <ul class="pager">
+                    <li class="next">
+                        <input  class="btn btn-default" id ="OrderPostBtn"  type="button"  value ="Older Posts"/>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
@@ -183,6 +196,77 @@
 
     <!-- Theme JavaScript -->
     <script src="js/clean-blog.min.js"></script>
+    
+    <script type ="text/javascript">
+    $(document ).ready(function() {
+    	console.log( "ready!" );
+    });
+    $("#OrderPostBtn").click(function(){
+    	//alert("Click")
+    	// 테이블에 들어있는 게시글의 갯수
+    	
+    	//var $content = $(#boardTable tr);
+    	//var listCount = #content.length;
+    	
+    	var listCount = $("#boardTable tr").length;
+    	console.log("현재 게시글의 갯수 : " + listCount );
+    	//alert(index)
+    	// 불러올 페이지 요청
+    	var url="main.do";  
+        var params="cmd=order&listCount="+listCount;
+        
+      
+        $.ajax({      
+            type:"POST",  
+            url:url,      
+            data:params,      
+            success:function(result){   
+            	dataParsing(result);  
+            	//alert(result);
+            },   
+            error:function(e){  
+                alert(e.responseText);  
+            }  
+        });
+        
+    });
+    
+    function dataParsing(result){
+    	console.log("파싱할 데이터 : " + result);
+    	var jsonData = JSON.parse(result);
+    	
+    	for(var i = 0; i < jsonData.length; i++){
+    		var data = jsonData[i];
+        
+    		var tr = $('#boardTable tbody:last').after(""+
+    				"<tr>"+"</tr>"
+    				);
+    		var div = $('#boardTable tr:last').append(""+
+    				"<div class='post-preview'>"+
+    				"<a href='main.do?cmd=view&id=" +data.id+ "'>"+
+    				"<h2 class='post-title'>"+
+    				data.title+
+    				"</h2>"+
+    				"<h3 class='post-subtitle'>"+
+    				data.content+
+    				"</h3>"+
+    				"</a>"+
+    				"<p class='post-meta'>Posted by inyoung</a> on September 24, 2014</p>"+
+    				"</div>"+
+    				"<hr>"
+    				
+    				);
+    		
+    		console.log("파싱할 단위 데이터 : " + data);
+    		
+    		console.log(data.id);
+    		console.log(data.title);
+    		console.log(data.content);
+    		
+    		
+    	}   	
+    };
+    </script>
 
 </body>
 

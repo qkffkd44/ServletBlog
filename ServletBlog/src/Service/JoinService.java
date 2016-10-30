@@ -9,36 +9,43 @@ import DTO.MemberDTO;
 import Interface.ServiceForward;
 import Interface.ServiceInterface;
 
-public class LoginService implements ServiceInterface {
+public class JoinService implements ServiceInterface {
 
   @Override
   public ServiceForward excute(HttpServletRequest request, HttpServletResponse response) {
     // TODO Auto-generated method stub
-    System.out.println("LoginService : init");
+    System.out.println("JoinService : init");
     
     ServiceForward forward = new ServiceForward();
     forward.setRedirect(true);
     forward.setPath("./PageHome.jsp");
-
+    
     String id = request.getParameter("id");
     String pwd = request.getParameter("pwd");
-
-    //System.out.println(id + pwd);
+    String name = request.getParameter("name");
+    int age = Integer.parseInt(request.getParameter("age"));
+    String email = request.getParameter("email");
+    String location = request.getParameter("location");
+    
     MemberDTO dto = new MemberDTO();
     dto.setId(id);
     dto.setPwd(pwd);
-
-    boolean b = new MemberDAO().login(dto);
+    dto.setName(name);
+    dto.setAge(age);
+    dto.setEmail(email);
+    dto.setLocation(location);
     
-    if(b){ //로그인 성공했을때
-      System.out.println("로그인 성공");
-      HttpSession session = request.getSession();
-      session.setAttribute("Member",dto);
+    boolean b = new MemberDAO().join(dto);
+    
+    if(b){ //회원가입 성공했을때
+      System.out.println("회원가입 성공");
     }else{
-      System.out.println("로그인 실패");
+      System.out.println("회원가입 실패");
     }
 
+    
     return forward;
   }
+  
 
 }

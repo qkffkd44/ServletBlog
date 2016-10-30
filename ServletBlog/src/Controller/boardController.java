@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import Interface.ServiceForward;
 import Interface.ServiceInterface;
+import Service.BoardEditService;
 import Service.BoardPageService;
+import Service.BoardRegisterService;
 import Service.LoginService;
 import Service.LogoutService;
 
@@ -22,25 +24,34 @@ public class boardController extends HttpServlet {
   protected void service(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     request.setCharacterEncoding("UTF-8");
-    System.out.println("board controller init");
+    System.out.println("boardController : init");
 
     String cmd = request.getParameter("cmd");
-    System.out.println("board 분기 명령어 : " + cmd);
+    System.out.println("boardController :  분기 명령어 : " + cmd);
 
     ServiceForward forward = null;
     ServiceInterface service = null;
 
     if (cmd.equals("page")) {
       service = new BoardPageService();
+      //service.excute 하면 서비스 페이지로 이동
+      forward = service.excute(request, response);
+    }else if(cmd.equals("register")){
+      service = new BoardRegisterService();
+      forward = service.excute(request, response);
+    }else if(cmd.equals("edit")){
+      service = new BoardEditService();
       forward = service.excute(request, response);
     }
 
     if (forward != null) {
       if (forward.isRedirect()) { // redirect
         response.sendRedirect(forward.getPath());
+        System.out.println("redirect");
       } else { // forward
         RequestDispatcher dispathcer = request.getRequestDispatcher(forward.getPath());
         dispathcer.forward(request, response);
+        System.out.println("forward");
       }
     }
 
