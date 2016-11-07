@@ -15,7 +15,7 @@ public class MemberDAO {
     boolean b = false;
     Connection con = DBManager.getConnection();
     PreparedStatement pstmt = null;
-    String sql = "Select * from member where mid=? and mpwd=?";
+    String sql = "Select * from member where id=? and pwd=?";
 
     System.out.println(dto.getId());
     System.out.println(dto.getPwd());
